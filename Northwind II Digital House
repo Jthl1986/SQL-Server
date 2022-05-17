@@ -1,0 +1,105 @@
+-- Ejercicio 1: Cuántos clientes existen?
+SELECT count(*)
+From customers;
+-- o....
+SELECT count(distinct id)
+From customers;
+-- o....
+-- Clientes que me compraron.....
+SELECT count(distinct customer_id)
+From orders;
+
+
+-- Ejercicio 2: Cuántos clientes hay por ciudad?
+SELECT city, count(id)
+From customers
+group by city
+order by 2 DESC;
+
+SELECT city, count(id)
+From customers
+group by city
+order by count(id) DESC;
+
+
+SELECT city, count(id) as 'Cantidad' 
+From customers
+group by city
+order by cantidad DESC;
+
+
+-- Ejercicio 3: Cuántas órdenes existen por método de pago? ¿Cuál es el más elegido?
+SELECT payment_type, count(*)
+From orders
+group by payment_type
+order by 2 DESC
+Limit 1;
+
+SELECT city, count(id)
+From customers
+group by city
+order by count(id) DESC
+;
+
+
+
+-- Ejercicio 4: Cuántas órdenes existen por método de pago y con status igual a 3?
+
+SELECT payment_type, count(*)
+From orders
+Where status_id = 3
+group by payment_type
+order by 2 DESC;
+
+-- Ejercicio 5: ¿Tomando la tabla order_detail, cual es la cantidad promedio ordenada?
+SELECT avg(quantity)
+From order_details;
+
+-- Ejercicio 6: Cuál es la máxima cantidad?
+SELECT max(quantity)
+From order_details;
+
+-- Ejercicio 7: Cuál es el product_id más pedido?
+SELECT product_id, max(quantity)
+From order_details group by product_id order by 2 DESC;
+
+SELECT * From order_details
+ORDER BY quantity DESC;
+
+SELECT product_id, sum(quantity*unit_price)
+From order_details
+GROUP BY product_id
+ORDER BY 2 DESC
+Limit 1;
+
+SELECT product_id, COUNT(id)
+From order_details
+GROUP BY product_id
+ORDER BY 2 DESC
+Limit 1;
+
+SELECT product_id, sum(quantity) AS qty
+From order_details
+GROUP BY product_id
+ORDER BY sum(quantity) DESC
+Limit 1;
+
+-- Ejercicio 8: A qué producto corresponde ese id?
+SELECT product_name
+From products
+where id = 43;
+
+-- Ejercicio 9: Cuánto es la facturación total? Considerando que la facturación es igual al precio por cantidad.
+SELECT CAST(SUM(quantity * unit_price) AS DECIMAL(20,2)) As 'Facturacion Total'
+From order_details;
+
+-- Ejercicio 10: ¿Tomando la tabla orders, qué id de empleado tuvo más órdenes? ¿A qué empleado corresponde ese id?
+SELECT employee_id, count(id)
+From orders
+GROUP BY employee_id
+ORDER BY 2 DESC
+Limit 1;
+
+SELECT id, last_name, first_name
+from employees
+Where id = 1;
