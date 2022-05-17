@@ -1,0 +1,62 @@
+-- -- Ejercicio 1: Obtener un listado de todos los clientes que son "Owner".
+Select * 
+from customers
+Where job_title = 'Owner';
+
+-- Ejercicio 2: Obtener un listado de todos los clientes que pertenecen a la compañía "A".
+Select * 
+from customers
+Where company = 'Company A';
+
+-- Ejercicio 3: Obtener un listado con los datos: City, first_name, last_name, job_title de todos los clientes que sean de la ciudad "Boston".
+Select City, first_name, last_name, job_title 
+from customers
+Where city = 'Boston';
+
+-- Ejercicio 4; Obtener un listado de todas las órdenes con forma de pago de tarjeta de crédito o efectivo.
+Select *
+from orders
+Where payment_type = 'Credit Card' or payment_type = 'Cash';
+
+-- Ejercicio 4 Bis
+Select *
+from orders
+Where payment_type IN('Credit Card','Cash');
+
+-- Ejercicio 5: Cuales son los distintos métodos de pago?
+Select distinct payment_type 
+from orders;
+
+Select payment_type 
+from orders;
+
+-- Ejercicio 6: Existen órdenes que la ciudad de envío sea las vegas y el tipo de pago sea Tarjeta de Crédito?
+Select *
+from orders
+Where payment_type ='Credit Card' and ship_city ='Las Vegas';
+
+
+-- Ejercicio 7: Cuáles son los empleados con puesto “Sales Representative”.
+
+Select * 
+from employees
+WHERE job_title = 'Sales Representative';
+
+
+-- Ejercicio 8: Cual es el id de empleado de “Sergienko”?
+
+Select id 
+from employees
+where last_name = 'Sergienko';
+
+-- Ejercicio 9: Existen órdenes con employee_id del empleado del ejercicio anterior?
+
+Select id , last_name, first_name
+from employees
+where last_name = 'Sergienko';
+
+-- Ejercicio 9
+Select * 
+from orders
+Where employee_id = 4;
+
